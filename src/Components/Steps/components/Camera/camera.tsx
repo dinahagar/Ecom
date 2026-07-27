@@ -22,11 +22,15 @@ import {
   TitleP,
 } from "./camera.styles";
 
-const Camera = () => {
+const Camera = ({activeKey, setActiveKey}: {activeKey: string, setActiveKey: any}) => {
   const { data } = useGetAllCamerasQuery({});
 
-  console.log(data);
-
+  const handleNextBtn = () => {
+    if(Number(activeKey) < 4) {
+      setActiveKey(String(Number(activeKey) + 1));
+    }
+  }
+  
   return (
     <div>
       <Row gutter={24} style={{ display: 'flex', justifyContent: 'center' }}>
@@ -93,7 +97,7 @@ const Camera = () => {
         })}
       </Row>
       <NextBtnDiv>
-        <NextBtn>Next: Choose your plan</NextBtn>
+        <NextBtn onClick={handleNextBtn}>Next: Choose your plan</NextBtn>
       </NextBtnDiv>
     </div>
   );

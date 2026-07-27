@@ -154,4 +154,10 @@ export const NextBtn = styled.button`
     background: transparent;
     min-height: 39px;
     min-width: 242px;
+    cursor: pointer;
+
+    &:hover {
+        background: #4E2FD2;
+        color: #fff;
+    }
 `;

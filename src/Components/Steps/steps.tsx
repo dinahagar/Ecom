@@ -15,7 +15,7 @@ import Header from "./components/Header/header";
 const Steps: React.FC = () => {
   const [activeKey, setActiveKey] = useState<string>("1");
   const { token } = theme.useToken();
-
+  
   const getItems: (panelStyle: CSSProperties) => CollapseProps["items"] = (
     panelStyle,
   ) => [
@@ -30,7 +30,7 @@ const Steps: React.FC = () => {
           selected={0}
         />
       ),
-      children: <Camera />,
+      children: <Camera activeKey={activeKey} setActiveKey={setActiveKey} />,
       style: {
         ...panelStyle,
         background: activeKey === "1" ? "#EDF4FF" : "#fff",
