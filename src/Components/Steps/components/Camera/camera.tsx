@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Col, Row } from "antd";
 import { useGetAllCamerasQuery } from "../../../../Services/camera";
 import {
@@ -24,11 +25,19 @@ import {
 
 const Camera = ({activeKey, setActiveKey}: {activeKey: string, setActiveKey: any}) => {
   const { data } = useGetAllCamerasQuery({});
-
+  const [selectedColor, setSelectedColor] = useState<Record<number, number>>({});
+  
   const handleNextBtn = () => {
     if(Number(activeKey) < 4) {
       setActiveKey(String(Number(activeKey) + 1));
     }
+  }
+
+  const handleColor = (item: any, color: any) => {
+    setSelectedColor((prev) => ({
+      ...prev,
+      [item.id]: color.id,
+    }));
   }
   
   return (
@@ -63,7 +72,11 @@ const Camera = ({activeKey, setActiveKey}: {activeKey: string, setActiveKey: any
                     <ColorsDiv>
                       {item.colors.map((color: any) => {
                         return (
-                          <ColorButton style={{ background: "#FFFFFF" }}>
+                          <ColorButton 
+                            key={color?.id} 
+                            style={{ background: selectedColor[item.id] === color.id ? "#1DF0BB0A" : "#FFFFFF", border: selectedColor[item.id] === color.id ? 'solid .5px #0AA288' : 'solid .5px #CCCCCC' }} 
+                            onClick={() => handleColor(item, color)}
+                          >
                             <ButtonImg src={color.img} alt="" />
                             <ColorName>{color.name}</ColorName>
                           </ColorButton>

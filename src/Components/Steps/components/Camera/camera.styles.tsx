@@ -62,7 +62,6 @@ export const ColorsDiv = styled.div`
 export const ColorButton = styled.button`
     display: flex;
     align-items: center;
-    border: solid .5px #CCCCCC;
     border-radius: 2px;
     width: 65px;
     min-width: 65px;
