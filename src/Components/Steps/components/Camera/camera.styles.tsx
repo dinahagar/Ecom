@@ -137,3 +137,21 @@ export const SaveBadge = styled(Badge)`
     justify-content: center;
     gap: 3px;
 `;
+
+export const NextBtnDiv = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
+export const NextBtn = styled.button`
+    font-size: 18px;
+    font-weight: 400;
+    color: #4E2FD2;
+    border-radius: 7px;
+    border: solid 1px #4E2FD2;
+    padding: 5px 24px;
+    background: transparent;
+    min-height: 39px;
+    min-width: 242px;
+`;

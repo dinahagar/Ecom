@@ -11,6 +11,8 @@ import {
   DescSpan,
   DetailsCol,
   NewPriceP,
+  NextBtn,
+  NextBtnDiv,
   OldPriceP,
   PriceDiv,
   QuantityButton,
@@ -90,7 +92,9 @@ const Camera = () => {
           );
         })}
       </Row>
-      <button>Next</button>
+      <NextBtnDiv>
+        <NextBtn>Next: Choose your plan</NextBtn>
+      </NextBtnDiv>
     </div>
   );
 };
