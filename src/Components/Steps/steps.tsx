@@ -11,11 +11,14 @@ import planIcon from "../../icons/plan.png";
 import sensorsIcon from "../../icons/sensors.png";
 import protectionIcon from "../../icons/protection.png";
 import Header from "./components/Header/header";
+import { RootState } from "../../Store/store";
+import { useSelector } from 'react-redux'
 
 const Steps: React.FC = () => {
   const [activeKey, setActiveKey] = useState<string>("1");
   const { token } = theme.useToken();
-  
+  const selectedItemsNum = useSelector((state: RootState) => state.camera.selectedItems);
+
   const getItems: (panelStyle: CSSProperties) => CollapseProps["items"] = (
     panelStyle,
   ) => [
@@ -27,7 +30,7 @@ const Steps: React.FC = () => {
           icon={cameraIcon}
           title="Choose your cameras"
           isActive={activeKey === "1"}
-          selected={0}
+          selected={selectedItemsNum ?? 0}
         />
       ),
       children: <Camera activeKey={activeKey} setActiveKey={setActiveKey} />,

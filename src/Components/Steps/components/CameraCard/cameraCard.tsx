@@ -1,18 +1,52 @@
 import { Col, Row } from "antd";
 import { useState } from "react";
-import { ButtonImg, Cameracard, ColorButton, ColorName, ColorsDiv, DescP, DescSpan, DetailsCol, NewPriceP, OldPriceP, PriceDiv, QuantityButton, QuantityDiv, QuantitySpan, SaveBadge, TitleP } from "./cameraCard.styles";
+import {
+  ButtonImg,
+  Cameracard,
+  ColorButton,
+  ColorName,
+  ColorsDiv,
+  DescP,
+  DescSpan,
+  DetailsCol,
+  NewPriceP,
+  OldPriceP,
+  PriceDiv,
+  QuantityButton,
+  QuantityDiv,
+  QuantitySpan,
+  SaveBadge,
+  TitleP,
+} from "./cameraCard.styles";
+import { useDispatch } from "react-redux";
+import {
+  decreaseSelectedItems,
+  increaseSelectedItems,
+} from "../../../../Store/Reducers/cameraSlice";
 
-const CameraCard = ({ item }: { item: any }) => {
+const CameraCard = ({
+  item,
+}: {
+  item: any;
+}) => {
   const [Quantity, setQuantity] = useState<number>(0);
   const [selectedColor, setSelectedColor] = useState<number>();
+  const dispatch = useDispatch();
 
   const handleQuantityPlus = () => {
-    setQuantity(Quantity + 1);
+    const next = Quantity + 1;
+    setQuantity(next);
+
+    if (Quantity === 0) {
+      dispatch(increaseSelectedItems());
+    }
   };
 
   const handleQuantityMinus = () => {
-    if(Quantity > 0) {
-        setQuantity(Quantity - 1);
+    setQuantity((prev) => Math.max(prev - 1, 0));
+
+    if (Quantity === 1) {
+      dispatch(decreaseSelectedItems());
     }
   };
 
@@ -61,9 +95,7 @@ const CameraCard = ({ item }: { item: any }) => {
                     key={color?.id}
                     style={{
                       background:
-                        selectedColor === color.id
-                          ? "#1DF0BB0A"
-                          : "#FFFFFF",
+                        selectedColor === color.id ? "#1DF0BB0A" : "#FFFFFF",
                       border:
                         selectedColor === color.id
                           ? "solid .5px #0AA288"
@@ -80,14 +112,22 @@ const CameraCard = ({ item }: { item: any }) => {
             <PriceDiv>
               <QuantityDiv>
                 <QuantityButton
-                    style={{ background: Quantity > 0 ? "#F0F4F7" : "#FFFFFF", color: Quantity > 0 ? "#575757" : "#CED6DE", border: Quantity > 0 ? 'none' : 'solid 2px #E6EBF0' }}
-                    onClick={handleQuantityMinus}
+                  style={{
+                    background: Quantity > 0 ? "#F0F4F7" : "#FFFFFF",
+                    color: Quantity > 0 ? "#575757" : "#CED6DE",
+                    border: Quantity > 0 ? "none" : "solid 2px #E6EBF0",
+                  }}
+                  onClick={handleQuantityMinus}
                 >
                   -
                 </QuantityButton>
                 <QuantitySpan>{Quantity ?? 0}</QuantitySpan>
                 <QuantityButton
-                  style={{ background: "#F0F4F7", color: "#575757", border: 'none' }}
+                  style={{
+                    background: "#F0F4F7",
+                    color: "#575757",
+                    border: "none",
+                  }}
                   onClick={handleQuantityPlus}
                 >
                   +

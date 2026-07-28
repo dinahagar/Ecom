@@ -1,30 +1,26 @@
 import { createSlice } from '@reduxjs/toolkit'
-import type { PayloadAction } from '@reduxjs/toolkit'
 
-export interface CounterState {
-  value: number
+export interface CameraState {
+  selectedItems: number;
 }
 
-const initialState: CounterState = {
-  value: 0,
+const initialState: CameraState = {
+  selectedItems: 0,
 }
 
 export const cameraSlice = createSlice({
   name: 'camera',
   initialState,
   reducers: {
-    increment: (state) => {
-      state.value += 1
+    increaseSelectedItems:(state) => {
+      state.selectedItems += 1
     },
-    decrement: (state) => {
-      state.value -= 1
-    },
-    incrementByAmount: (state, action: PayloadAction<number>) => {
-      state.value += action.payload
-    },
+    decreaseSelectedItems:(state) => {
+      state.selectedItems -= 1
+    }
   },
 })
 
-export const { increment, decrement, incrementByAmount } = cameraSlice.actions
+export const { increaseSelectedItems, decreaseSelectedItems } = cameraSlice.actions
 
 export default cameraSlice.reducer
