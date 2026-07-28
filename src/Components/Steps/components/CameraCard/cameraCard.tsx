@@ -30,6 +30,7 @@ const CameraCard = ({
   item: any;
 }) => {
   const [Quantity, setQuantity] = useState<number>(0);
+  const [selectedCard, setSelectedCard] = useState<boolean>(false);
   const [selectedColor, setSelectedColor] = useState<number>();
   const dispatch = useDispatch();
 
@@ -40,6 +41,10 @@ const CameraCard = ({
     if (Quantity === 0) {
       dispatch(increaseSelectedItems());
     }
+
+    if(next >= 1) {
+        setSelectedCard(true)
+    }
   };
 
   const handleQuantityMinus = () => {
@@ -47,6 +52,10 @@ const CameraCard = ({
 
     if (Quantity === 1) {
       dispatch(decreaseSelectedItems());
+    }
+    
+    if((Quantity - 1) === 0) {
+        setSelectedCard(false);
     }
   };
 
@@ -56,7 +65,7 @@ const CameraCard = ({
 
   return (
     <div>
-      <Cameracard>
+      <Cameracard style={{ border: selectedCard ? 'solid 2px #4E2FD2B2' : 'none'}}>
         <Row>
           <Col xs={24} sm={24} md={24} lg={8} xl={8}>
             {item.badge && (
