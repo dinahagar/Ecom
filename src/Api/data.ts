@@ -23,9 +23,9 @@ const data = [
     newPrice: "$27.98",
     badge: "22%",
     colors: [
-      { img: whitecamV4, name: "White" },
-      { img: greycamV4, name: "Gray" },
-      { img: blackcamV4, name: "Black" },
+      { id: 1, img: whitecamV4, name: "White" },
+      { id: 2, img: greycamV4, name: "Gray" },
+      { id: 3, img: blackcamV4, name: "Black" },
     ],
   },
   {
@@ -37,8 +37,8 @@ const data = [
     newPrice: "$34.98",
     badge: "12%",
     colors: [
-      { img: whitecampanv3, name: "White" },
-      { img: blackcampanv3, name: "Black" },
+      { id: 4, img: whitecampanv3, name: "White" },
+      { id: 5, img: blackcampanv3, name: "Black" },
     ],
   },
   {
@@ -48,10 +48,10 @@ const data = [
     img: camfloodlightv2,
     oldPrice: "$89.98",
     newPrice: "$69.98",
-    badge: "22%",
+    badge: "22%",    
     colors: [
-      { img: whitecamfloodlightv2, name: "White" },
-      { img: blackcamfloodlightv2, name: "Black" },
+      { id: 6, img: whitecamfloodlightv2, name: "White" },
+      { id: 7, img: blackcamfloodlightv2, name: "Black" },
     ],
   },
   {
@@ -73,8 +73,8 @@ const data = [
     newPrice: "$89.98",
     badge: "",
     colors: [
-      { img: whitecampro, name: "White" },
-      { img: blackcampro, name: "Black" },
+      { id: 8, img: whitecampro, name: "White" },
+      { id: 9, img: blackcampro, name: "Black" },
     ],
   },
 ];
