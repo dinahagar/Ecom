@@ -1,5 +1,6 @@
 import { Col } from "antd";
 import { RowBody } from "./App.styles";
+import Review from "./Components/Review/review";
 import Steps from "./Components/Steps/steps";
 
 function App() {
@@ -12,7 +13,9 @@ function App() {
       </Col>
 
       <Col xs={24} sm={24} md={24} lg={24} xl={8}>
-        <div style={{ border: "1px solid" }}>Content</div>
+        <div>
+          <Review />
+        </div>
       </Col>
     </RowBody>
   );
