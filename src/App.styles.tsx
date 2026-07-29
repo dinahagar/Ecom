@@ -13,4 +13,13 @@ export const RowBody = styled(Row)`
             }
         }
     }
+
+    @media (max-width: 1200px) and (min-width: 991px) {
+        padding: 49.5px 113.5px;
+    }
+
+    @media (max-width: 991px) {
+        padding: 49.5px 35px;
+    }
+
 `

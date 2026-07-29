@@ -1,4 +1,4 @@
-import { Col, Row } from "antd";
+import { Row } from "antd";
 import { useState } from "react";
 import {
   ButtonImg,
@@ -9,9 +9,11 @@ import {
   DescP,
   DescSpan,
   DetailsCol,
+  ImgCol,
   NewPriceP,
   OldPriceP,
   PriceDiv,
+  PriceValue,
   QuantityButton,
   QuantityDiv,
   QuantitySpan,
@@ -24,11 +26,7 @@ import {
   increaseSelectedItems,
 } from "../../../../Store/Reducers/cameraSlice";
 
-const CameraCard = ({
-  item,
-}: {
-  item: any;
-}) => {
+const CameraCard = ({ item }: { item: any }) => {
   const [Quantity, setQuantity] = useState<number>(0);
   const [selectedCard, setSelectedCard] = useState<boolean>(false);
   const [selectedColor, setSelectedColor] = useState<number>();
@@ -42,8 +40,8 @@ const CameraCard = ({
       dispatch(increaseSelectedItems());
     }
 
-    if(next >= 1) {
-        setSelectedCard(true)
+    if (next >= 1) {
+      setSelectedCard(true);
     }
   };
 
@@ -53,9 +51,9 @@ const CameraCard = ({
     if (Quantity === 1) {
       dispatch(decreaseSelectedItems());
     }
-    
-    if((Quantity - 1) === 0) {
-        setSelectedCard(false);
+
+    if (Quantity - 1 === 0) {
+      setSelectedCard(false);
     }
   };
 
@@ -65,9 +63,17 @@ const CameraCard = ({
 
   return (
     <div>
-      <Cameracard style={{ border: selectedCard ? 'solid 2px #4E2FD2B2' : 'none'}}>
-        <Row>
-          <Col xs={24} sm={24} md={24} lg={8} xl={8}>
+      <Cameracard
+        style={{ border: selectedCard ? "solid 2px #4E2FD2B2" : "none" }}
+      >
+        <Row align="stretch">
+          <ImgCol
+            xs={24}
+            sm={24}
+            md={24}
+            lg={24}
+            xl={8}
+          >
             {item.badge && (
               <SaveBadge size="medium">
                 <span>Save</span>
@@ -90,8 +96,8 @@ const CameraCard = ({
                 style={{ width: "101px", height: "101px" }}
               />
             </div>
-          </Col>
-          <DetailsCol xs={24} sm={24} md={24} lg={16} xl={16}>
+          </ImgCol>
+          <DetailsCol xs={24} sm={24} md={24} lg={24} xl={16}>
             <TitleP>{item.title}</TitleP>
             <DescP>
               {item.desc}
@@ -142,10 +148,10 @@ const CameraCard = ({
                   +
                 </QuantityButton>
               </QuantityDiv>
-              <div>
+              <PriceValue>
                 <OldPriceP>{item.oldPrice}</OldPriceP>
                 <NewPriceP>{item.newPrice}</NewPriceP>
-              </div>
+              </PriceValue>
             </PriceDiv>
           </DetailsCol>
         </Row>

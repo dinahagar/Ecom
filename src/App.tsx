@@ -5,13 +5,13 @@ import Steps from "./Components/Steps/steps";
 function App() {
   return (
     <RowBody gutter={24} style={{ margin: 0 }}>
-      <Col xs={24} sm={24} md={24} lg={16} xl={16}>
+      <Col xs={24} sm={24} md={24} lg={24} xl={16}>
         <div>
           <Steps />
         </div>
       </Col>
 
-      <Col xs={24} sm={24} md={24} lg={8} xl={8}>
+      <Col xs={24} sm={24} md={24} lg={24} xl={8}>
         <div style={{ border: "1px solid" }}>Content</div>
       </Col>
     </RowBody>

@@ -2,13 +2,35 @@ import { Col } from "antd";
 import { styled } from "styled-components";
 
 export const CameraCol = styled(Col)`
+
+    display: flex;
+    justify-content: center;
+
     .ant-card {
         width: 100%; 
-        height: 159px;
+        min-height: 159px;
         margin-bottom: 15px;
         display: flex;
         align-items: center;
     }
+
+    @media (max-width: 1470px) and (min-width: 1200px) {
+        .ant-card {
+            min-height: 225px;
+        }
+    }
+
+    @media (max-width: 1200px) {
+        .ant-card {
+            min-height: 330px;
+        }
+    }
+    @media (max-width: 991px) {
+        .ant-card {
+            max-width: 230px;
+        }
+    }
+
 `;
 
 export const NextBtnDiv = styled.div`

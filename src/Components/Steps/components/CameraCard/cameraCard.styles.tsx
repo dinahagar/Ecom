@@ -4,6 +4,11 @@ import { styled } from "styled-components";
 export const Cameracard = styled(Card)`
     .ant-card-body {
         padding: 7px;
+        height: stretch;
+
+        .ant-row {
+            height: stretch;
+        }
     }
 `;
 
@@ -56,12 +61,14 @@ export const ColorsDiv = styled.div`
     display: flex;
     align-items: center;
     gap: 6px;
+    flex-wrap: wrap;
 `;
 
 export const PriceDiv = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between; 
+    flex-wrap: wrap;
 `;
 
 export const NewPriceP = styled.p`
@@ -126,4 +133,18 @@ export const ColorButton = styled.button`
     height: 26px;
     padding: 1px 5px;
     cursor: pointer;
+`;
+
+export const ImgCol = styled(Col)`
+    @media (max-width: 1200px) {
+        display: grid;
+        align-items: center;
+    }
+`;
+
+export const PriceValue = styled.div`
+    @media (max-width: 1200px) {
+        display: flex;
+        gap: 4px;
+    }
 `;
