@@ -16,6 +16,7 @@ import blackcampro from "../icons/blackcampro.png";
 const data = [
   {
     id: 1,
+    section: "Cameras",
     title: "Wyze Cam v4",
     desc: "The clearest Wyze Cam ever made.",
     img: camV4,
@@ -30,6 +31,7 @@ const data = [
   },
   {
     id: 2,
+    section: "Cameras",
     title: "Wyze Cam Pan v3",
     desc: "360° pan and 180° tilt security camera.",
     img: campanv3,
@@ -43,6 +45,7 @@ const data = [
   },
   {
     id: 3,
+    section: "Cameras",
     title: "Wyze Cam Floodlight v2",
     desc: "2K floodlight camera with a 160° wide-angle view for your garage.",
     img: camfloodlightv2,
@@ -56,6 +59,7 @@ const data = [
   },
   {
     id: 4,
+    section: "Cameras",
     title: "Wyze Duo Cam Doorbell",
     desc: "Two cameras. Two views. Double the porch protection.",
     img: duocam,
@@ -66,6 +70,7 @@ const data = [
   },
   {
     id: 5,
+    section: "Cameras",
     title: "Wyze Battery Cam Pro",
     desc: "Protect anywhere. See everything in 2.5K HDR. No power outlet or electrician needed.",
     img: campro,
