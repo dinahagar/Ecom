@@ -5,6 +5,7 @@ import Shipping from "./components/Shipping/shipping";
 import { ReviewDiv, ReviewP } from "./review.styles";
 import { useSelector } from "react-redux";
 import { RootState } from "../../Store/store";
+import ReviewSensors from "./components/ReviewSensors/reviewSensors";
 
 const Review = () => {
   const quantities = useSelector((state: RootState) => state.camera.quantities);
@@ -14,6 +15,7 @@ const Review = () => {
       <ReviewP>Review</ReviewP>
       <ReviewHeader />
       <ReviewItems />
+      <ReviewSensors />
       {Object.values(quantities).some((quantity: any) => quantity > 0) && (
         <Shipping />
       )}

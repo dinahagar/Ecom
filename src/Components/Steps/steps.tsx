@@ -69,7 +69,7 @@ const Steps: React.FC = () => {
           selected={selectedItemsNum ?? 0}
         />
       ),
-      children: <Sensors />,
+      children: <Sensors activeKey={activeKey} setActiveKey={setActiveKey} />,
       style: {
         ...panelStyle,
         background: activeKey === "3" ? "#EDF4FF" : "#fff",

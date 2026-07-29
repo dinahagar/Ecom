@@ -1,3 +1,4 @@
+import { Row } from "antd";
 import { styled } from "styled-components";
 
 export const NameP = styled.p`
@@ -5,6 +6,11 @@ export const NameP = styled.p`
     font-size: 14px;
     font-weight: 400;
     letter-spacing: .5px;
+`
+
+export const ReviewRow = styled(Row)`
+    display: flex;
+    align-items: center;
 `
 
 export const ReviewImgDiv = styled.div`

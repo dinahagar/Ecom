@@ -1,15 +1,22 @@
+import React from "react";
+import { useGetAllSensorsQuery } from "../../../../Services/sensors";
 import { RootState } from "../../../../Store/store";
 import { useSelector } from "react-redux";
-import { useGetAllCamerasQuery } from "../../../../Services/camera";
+import {
+  NameP,
+  ReviewImg,
+  ReviewImgDiv,
+  ReviewRow,
+  SectionP,
+} from "../ReviewItems/reviewItems.style";
 import { Col } from "antd";
 import Price from "../../../Steps/components/Price/price";
-import { NameP, ReviewImg, ReviewImgDiv, ReviewRow, SectionP } from "./reviewItems.style";
 
-const ReviewItems = () => {
-  const { data } = useGetAllCamerasQuery({});
+const ReviewSensors = () => {
+  const { data: sensorsData } = useGetAllSensorsQuery({});
   const quantities = useSelector((state: RootState) => state.camera.quantities);
 
-  const reviewItems = data?.items?.filter(
+  const reviewItems = sensorsData?.items?.filter(
     (item: any) => (quantities[item.id] ?? 0) > 0,
   );
 
@@ -17,13 +24,13 @@ const ReviewItems = () => {
     <div>
       {reviewItems?.length > 0 && (
         <>
-          <SectionP>{data?.section}</SectionP>
+          <SectionP>{sensorsData?.section}</SectionP>
         </>
       )}
       {reviewItems?.map((item: any) => {
         return (
           <div key={item.id}>
-            <ReviewRow>
+            <ReviewRow style={{ display: 'flex', alignItems: 'center'}}>
               <Col xs={12} sm={12} md={12} lg={12} xl={12}>
                 <ReviewImgDiv>
                   <ReviewImg src={item.img} alt="" />
@@ -62,4 +69,4 @@ const ReviewItems = () => {
   );
 };
 
-export default ReviewItems;
+export default ReviewSensors;

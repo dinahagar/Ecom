@@ -4,6 +4,8 @@ export const ShippingDiv = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-top: solid 1px #CED6DE;
+    padding-top: 10px;
 `
 
 export const ShippingImgDiv = styled.div`
