@@ -21,7 +21,7 @@ const Camera = ({
   return (
     <div>
       <Row gutter={24} style={{ display: "flex", justifyContent: "center" }} align="stretch">
-        {data?.map((item: any) => {
+        {data?.items?.map((item: any) => {
           return (
             <CameraCol key={item.id} xs={24} sm={12} md={8} lg={8} xl={12}>
               <CameraCard item={item} key={item.id} />

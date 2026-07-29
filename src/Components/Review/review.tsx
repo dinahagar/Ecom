@@ -1,5 +1,6 @@
 import React from 'react'
-import ReviewHeader from './components/reviewHeader'
+import ReviewHeader from './components/ReviewHeader/reviewHeader'
+import ReviewItems from './components/ReviewItems/reviewItems'
 import { ReviewDiv, ReviewP } from './review.styles'
 
 const Review = () => {
@@ -7,6 +8,7 @@ const Review = () => {
     <ReviewDiv>
         <ReviewP>Review</ReviewP>
         <ReviewHeader />
+        <ReviewItems />
     </ReviewDiv>
   )
 }

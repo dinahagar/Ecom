@@ -1,6 +1,7 @@
 import { Row } from "antd";
 import { useState } from "react";
 import Price from "../Price/price";
+import { useSelector } from "react-redux";
 import {
   ButtonImg,
   Cameracard,
@@ -14,10 +15,11 @@ import {
   SaveBadge,
   TitleP,
 } from "./cameraCard.styles";
+import { RootState } from "../../../../Store/store";
 const CameraCard = ({ item }: { item: any }) => {
   const [selectedCard, setSelectedCard] = useState<boolean>(false);
   const [selectedColor, setSelectedColor] = useState<number>();
-
+  const quantities = useSelector((state: RootState) => state.camera.quantities);
 
   const handleColor = (color: any) => {
     setSelectedColor(color.id);
@@ -80,7 +82,33 @@ const CameraCard = ({ item }: { item: any }) => {
                 );
               })}
             </ColorsDiv>
-            <Price item={item} setSelectedCard={setSelectedCard}/>
+            <Price
+              item={item}
+              setSelectedCard={setSelectedCard}
+              quantities={quantities}
+              minusButtonStyle={{
+                background:
+                  (quantities[item?.id] ?? 0) > 0 ? "#F0F4F7" : "#FFFFFF",
+                color: (quantities[item?.id] ?? 0) > 0 ? "#575757" : "#CED6DE",
+                border:
+                  (quantities[item?.id] ?? 0) > 0
+                    ? "none"
+                    : "solid 2px #E6EBF0",
+              }}
+              plusButtonStyle={{
+                background: "#F0F4F7",
+                color: "#575757",
+                border: "none",
+              }}
+              oldPriceStyle={{
+                fontSize: "16px",
+                color: "#D8392B",
+              }}
+              newPriceStyle={{
+                fontSize: "16px",
+                color: "#575757",
+              }}
+            />
           </DetailsCol>
         </Row>
       </Cameracard>

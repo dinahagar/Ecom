@@ -40,17 +40,13 @@ export const PriceValue = styled.div`
 
 export const NewPriceP = styled.p`
     margin: 0;
-    font-size: 16px;
     font-weight: 400;
     letter-spacing: 0.6px;
-    color: #575757;
 `;
 
 export const OldPriceP = styled.p`
     margin: 0;
-    font-size: 16px;
     font-weight: 400;
     letter-spacing: 0.6px;
-    color: #D8392B;
     text-decoration: line-through;
 `;

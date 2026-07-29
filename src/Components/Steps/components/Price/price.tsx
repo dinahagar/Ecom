@@ -1,37 +1,35 @@
 import React from "react";
 import { decreaseQuantity, decreaseSelectedItems, increaseQuantity, increaseSelectedItems } from "../../../../Store/Reducers/cameraSlice";
-import { RootState } from "../../../../Store/store";
 import { NewPriceP, OldPriceP, PriceDiv, PriceValue, QuantityButton, QuantityDiv, QuantitySpan } from "./price.styles";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
-const Price = ({item, setSelectedCard} : {item: any, setSelectedCard: any}) => {
+const Price = ({item, setSelectedCard, plusButtonStyle, minusButtonStyle, oldPriceStyle, newPriceStyle, quantities} : {item?: any, quantities: any, plusButtonStyle: any, minusButtonStyle: any, oldPriceStyle: any, newPriceStyle: any, setSelectedCard?: React.Dispatch<React.SetStateAction<boolean>>}) => {
   const dispatch = useDispatch();
-  const quantities = useSelector((state: RootState) => state.camera.quantities);
-
+  
     const handleQuantityPlus = (item: any) => {
-    const quantity = quantities[item.id] ?? 0;
+    const quantity = quantities[item?.id] ?? 0;
     const next = quantity + 1;
-    dispatch(increaseQuantity(item.id));
+    dispatch(increaseQuantity(item?.id));
 
     if (quantity === 0) {
       dispatch(increaseSelectedItems());
     }
 
     if (next >= 1) {
-      setSelectedCard(true);
+      setSelectedCard?.(true);
     }
   };
 
   const handleQuantityMinus = (item: any) => {
-    const quantity = quantities[item.id] ?? 0;
-    dispatch(decreaseQuantity(item.id));
+    const quantity = quantities[item?.id] ?? 0;
+    dispatch(decreaseQuantity(item?.id));
 
     if (quantity === 1) {
       dispatch(decreaseSelectedItems());
     }
 
     if (quantity - 1 === 0) {
-      setSelectedCard(false);
+      setSelectedCard?.(false);
     }
   };
 
@@ -40,21 +38,16 @@ const Price = ({item, setSelectedCard} : {item: any, setSelectedCard: any}) => {
       <QuantityDiv>
         <QuantityButton
           style={{
-            background: (quantities[item.id] ?? 0) > 0 ? "#F0F4F7" : "#FFFFFF",
-            color: (quantities[item.id] ?? 0) > 0 ? "#575757" : "#CED6DE",
-            border:
-              (quantities[item.id] ?? 0) > 0 ? "none" : "solid 2px #E6EBF0",
+              ...minusButtonStyle
           }}
           onClick={() => handleQuantityMinus(item)}
         >
           -
         </QuantityButton>
-        <QuantitySpan>{quantities[item.id] ?? 0 ?? 0}</QuantitySpan>
+        <QuantitySpan>{quantities[item?.id] ?? 0 ?? 0}</QuantitySpan>
         <QuantityButton
           style={{
-            background: "#F0F4F7",
-            color: "#575757",
-            border: "none",
+            ...plusButtonStyle
           }}
           onClick={() => handleQuantityPlus(item)}
         >
@@ -62,8 +55,8 @@ const Price = ({item, setSelectedCard} : {item: any, setSelectedCard: any}) => {
         </QuantityButton>
       </QuantityDiv>
       <PriceValue>
-        <OldPriceP>{item.oldPrice}</OldPriceP>
-        <NewPriceP>{item.newPrice}</NewPriceP>
+        <OldPriceP style={{ ...oldPriceStyle }}>{item?.oldPrice}</OldPriceP>
+        <NewPriceP style={{ ...newPriceStyle }}>{item?.newPrice}</NewPriceP>
       </PriceValue>
     </PriceDiv>
   );
