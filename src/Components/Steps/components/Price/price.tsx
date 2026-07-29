@@ -1,12 +1,41 @@
 import React from "react";
-import { decreaseQuantity, decreaseSelectedItems, increaseQuantity, increaseSelectedItems } from "../../../../Store/Reducers/cameraSlice";
-import { NewPriceP, OldPriceP, PriceDiv, PriceValue, QuantityButton, QuantityDiv, QuantitySpan } from "./price.styles";
+import {
+  decreaseQuantity,
+  decreaseSelectedItems,
+  increaseQuantity,
+  increaseSelectedItems,
+} from "../../../../Store/Reducers/cameraSlice";
+import {
+  NewPriceP,
+  OldPriceP,
+  PriceDiv,
+  PriceValue,
+  QuantityButton,
+  QuantityDiv,
+  QuantitySpan,
+} from "./price.styles";
 import { useDispatch } from "react-redux";
 
-const Price = ({item, setSelectedCard, plusButtonStyle, minusButtonStyle, oldPriceStyle, newPriceStyle, quantities} : {item?: any, quantities: any, plusButtonStyle: any, minusButtonStyle: any, oldPriceStyle: any, newPriceStyle: any, setSelectedCard?: React.Dispatch<React.SetStateAction<boolean>>}) => {
+const Price = ({
+  item,
+  setSelectedCard,
+  plusButtonStyle,
+  minusButtonStyle,
+  oldPriceStyle,
+  newPriceStyle,
+  quantities,
+}: {
+  item?: any;
+  quantities: any;
+  plusButtonStyle: any;
+  minusButtonStyle: any;
+  oldPriceStyle: any;
+  newPriceStyle: any;
+  setSelectedCard?: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   const dispatch = useDispatch();
-  
-    const handleQuantityPlus = (item: any) => {
+
+  const handleQuantityPlus = (item: any) => {
     const quantity = quantities[item?.id] ?? 0;
     const next = quantity + 1;
     dispatch(increaseQuantity(item?.id));
@@ -38,7 +67,7 @@ const Price = ({item, setSelectedCard, plusButtonStyle, minusButtonStyle, oldPri
       <QuantityDiv>
         <QuantityButton
           style={{
-              ...minusButtonStyle
+            ...minusButtonStyle,
           }}
           onClick={() => handleQuantityMinus(item)}
         >
@@ -47,7 +76,7 @@ const Price = ({item, setSelectedCard, plusButtonStyle, minusButtonStyle, oldPri
         <QuantitySpan>{quantities[item?.id] ?? 0 ?? 0}</QuantitySpan>
         <QuantityButton
           style={{
-            ...plusButtonStyle
+            ...plusButtonStyle,
           }}
           onClick={() => handleQuantityPlus(item)}
         >

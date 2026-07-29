@@ -16,13 +16,19 @@ import {
   TitleP,
 } from "./cameraCard.styles";
 import { RootState } from "../../../../Store/store";
-const CameraCard = ({ item }: { item: any }) => {
-  const [selectedCard, setSelectedCard] = useState<boolean>(false);
-  const [selectedColor, setSelectedColor] = useState<number>();
-  const quantities = useSelector((state: RootState) => state.camera.quantities);
+import { useDispatch } from "react-redux";
+import { selectedColor } from "../../../../Store/Reducers/cameraSlice";
 
-  const handleColor = (color: any) => {
-    setSelectedColor(color.id);
+const CameraCard = ({ item }: { item: any }) => {
+  const dispatch = useDispatch();
+  const [selectedCard, setSelectedCard] = useState<boolean>(false);
+  const quantities = useSelector((state: RootState) => state.camera.quantities);
+  const selectedColorValue = useSelector(
+    (state: RootState) => state.camera.selectedColor,
+  );
+
+  const handleColor = (item: any, color: any) => {
+    dispatch(selectedColor({ cardId: item.id, colorId: color.id }));
   };
 
   return (
@@ -68,13 +74,13 @@ const CameraCard = ({ item }: { item: any }) => {
                     key={color?.id}
                     style={{
                       background:
-                        selectedColor === color.id ? "#1DF0BB0A" : "#FFFFFF",
+                        selectedColorValue[item.id] === color.id ? "#1DF0BB0A" : "#FFFFFF",
                       border:
-                        selectedColor === color.id
+                        selectedColorValue[item.id] === color.id
                           ? "solid .5px #0AA288"
                           : "solid .5px #CCCCCC",
                     }}
-                    onClick={() => handleColor(color)}
+                    onClick={() => handleColor(item, color)}
                   >
                     <ButtonImg src={color.img} alt="" />
                     <ColorName>{color.name}</ColorName>
