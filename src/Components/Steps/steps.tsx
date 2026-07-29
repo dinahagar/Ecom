@@ -48,7 +48,7 @@ const Steps: React.FC = () => {
           icon={planIcon}
           title="Choose your plan"
           isActive={activeKey === "2"}
-          selected={0}
+          selected={selectedItemsNum ?? 0}
         />
       ),
       children: <Plan />,
@@ -66,7 +66,7 @@ const Steps: React.FC = () => {
           icon={sensorsIcon}
           title="Choose your sensors"
           isActive={activeKey === "3"}
-          selected={0}
+          selected={selectedItemsNum ?? 0}
         />
       ),
       children: <Sensors />,
@@ -84,7 +84,7 @@ const Steps: React.FC = () => {
           icon={protectionIcon}
           title="Add extra protection"
           isActive={activeKey === "4"}
-          selected={0}
+          selected={selectedItemsNum ?? 0}
         />
       ),
       children: <Protection />,

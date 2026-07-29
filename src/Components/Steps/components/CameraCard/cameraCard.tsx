@@ -20,23 +20,27 @@ import {
   SaveBadge,
   TitleP,
 } from "./cameraCard.styles";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
+  decreaseQuantity,
   decreaseSelectedItems,
+  increaseQuantity,
   increaseSelectedItems,
 } from "../../../../Store/Reducers/cameraSlice";
+import { RootState } from "../../../../Store/store";
 
 const CameraCard = ({ item }: { item: any }) => {
-  const [Quantity, setQuantity] = useState<number>(0);
   const [selectedCard, setSelectedCard] = useState<boolean>(false);
   const [selectedColor, setSelectedColor] = useState<number>();
   const dispatch = useDispatch();
+  const quantities = useSelector((state: RootState) => state.camera.quantities);
 
-  const handleQuantityPlus = () => {
-    const next = Quantity + 1;
-    setQuantity(next);
+  const handleQuantityPlus = (item: any) => {
+    const quantity = quantities[item.id] ?? 0;
+    const next = quantity + 1;
+    dispatch(increaseQuantity(item.id));
 
-    if (Quantity === 0) {
+    if (quantity === 0) {
       dispatch(increaseSelectedItems());
     }
 
@@ -45,14 +49,15 @@ const CameraCard = ({ item }: { item: any }) => {
     }
   };
 
-  const handleQuantityMinus = () => {
-    setQuantity((prev) => Math.max(prev - 1, 0));
+  const handleQuantityMinus = (item: any) => {
+    const quantity = quantities[item.id] ?? 0;
+    dispatch(decreaseQuantity(item.id));
 
-    if (Quantity === 1) {
+    if (quantity === 1) {
       dispatch(decreaseSelectedItems());
     }
 
-    if (Quantity - 1 === 0) {
+    if (quantity - 1 === 0) {
       setSelectedCard(false);
     }
   };
@@ -67,13 +72,7 @@ const CameraCard = ({ item }: { item: any }) => {
         style={{ border: selectedCard ? "solid 2px #4E2FD2B2" : "none" }}
       >
         <Row align="stretch">
-          <ImgCol
-            xs={24}
-            sm={24}
-            md={24}
-            lg={24}
-            xl={8}
-          >
+          <ImgCol xs={24} sm={24} md={24} lg={24} xl={8}>
             {item.badge && (
               <SaveBadge size="medium">
                 <span>Save</span>
@@ -128,22 +127,27 @@ const CameraCard = ({ item }: { item: any }) => {
               <QuantityDiv>
                 <QuantityButton
                   style={{
-                    background: Quantity > 0 ? "#F0F4F7" : "#FFFFFF",
-                    color: Quantity > 0 ? "#575757" : "#CED6DE",
-                    border: Quantity > 0 ? "none" : "solid 2px #E6EBF0",
+                    background:
+                      (quantities[item.id] ?? 0) > 0 ? "#F0F4F7" : "#FFFFFF",
+                    color:
+                      (quantities[item.id] ?? 0) > 0 ? "#575757" : "#CED6DE",
+                    border:
+                      (quantities[item.id] ?? 0) > 0
+                        ? "none"
+                        : "solid 2px #E6EBF0",
                   }}
-                  onClick={handleQuantityMinus}
+                  onClick={() => handleQuantityMinus(item)}
                 >
                   -
                 </QuantityButton>
-                <QuantitySpan>{Quantity ?? 0}</QuantitySpan>
+                <QuantitySpan>{quantities[item.id] ?? 0 ?? 0}</QuantitySpan>
                 <QuantityButton
                   style={{
                     background: "#F0F4F7",
                     color: "#575757",
                     border: "none",
                   }}
-                  onClick={handleQuantityPlus}
+                  onClick={() => handleQuantityPlus(item)}
                 >
                   +
                 </QuantityButton>
