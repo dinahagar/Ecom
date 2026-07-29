@@ -35,7 +35,7 @@ const Sensors = ({
         })}
       </Row>
       <NextBtnDiv>
-        <NextBtn onClick={handleNextBtn}>Next: Choose your plan</NextBtn>
+        <NextBtn onClick={handleNextBtn}>Next: Choose your protection</NextBtn>
       </NextBtnDiv>
     </div>
   );

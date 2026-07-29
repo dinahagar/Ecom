@@ -1,4 +1,3 @@
-import { useGetAllSensorsQuery } from "../../../../Services/sensors";
 import { RootState } from "../../../../Store/store";
 import { useSelector } from "react-redux";
 import {
@@ -10,12 +9,13 @@ import {
 } from "../ReviewItems/reviewItems.style";
 import { Col } from "antd";
 import Price from "../../../Steps/components/Price/price";
+import { useGetAllProtectionApiQuery } from "../../../../Services/protection";
 
-const ReviewSensors = () => {
-  const { data: sensorsData } = useGetAllSensorsQuery({});
+const ReviewProtection = () => {
+  const { data: protectionData } = useGetAllProtectionApiQuery({});
   const quantities = useSelector((state: RootState) => state.camera.quantities);
 
-  const reviewItems = sensorsData?.items?.filter(
+  const reviewItems = protectionData?.items?.filter(
     (item: any) => (quantities[item.id] ?? 0) > 0,
   );
 
@@ -23,13 +23,13 @@ const ReviewSensors = () => {
     <div>
       {reviewItems?.length > 0 && (
         <>
-          <SectionP>{sensorsData?.section}</SectionP>
+          <SectionP>{protectionData?.section}</SectionP>
         </>
       )}
       {reviewItems?.map((item: any) => {
         return (
           <div key={item.id}>
-            <ReviewRow style={{ display: 'flex', alignItems: 'center'}}>
+            <ReviewRow style={{ display: "flex", alignItems: "center" }}>
               <Col xs={12} sm={12} md={12} lg={12} xl={12}>
                 <ReviewImgDiv>
                   <ReviewImg src={item.img} alt="" />
@@ -68,4 +68,4 @@ const ReviewSensors = () => {
   );
 };
 
-export default ReviewSensors;
+export default ReviewProtection;

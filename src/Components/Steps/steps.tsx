@@ -87,7 +87,7 @@ const Steps: React.FC = () => {
           selected={selectedItemsNum ?? 0}
         />
       ),
-      children: <Protection />,
+      children: <Protection activeKey={activeKey} setActiveKey={setActiveKey} />,
       style: {
         ...panelStyle,
         background: activeKey === "4" ? "#EDF4FF" : "#fff",
