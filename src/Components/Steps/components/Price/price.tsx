@@ -1,4 +1,4 @@
-import React from "react";
+import { CSSProperties } from "react";
 import {
   decreaseQuantity,
   increaseQuantity,
@@ -13,6 +13,7 @@ import {
   QuantitySpan,
 } from "./price.styles";
 import { useDispatch } from "react-redux";
+import { CameraItem } from "../../../../Interfaces/types";
 
 const Price = ({
   item,
@@ -22,20 +23,20 @@ const Price = ({
   newPriceStyle,
   quantities,
 }: {
-  item?: any;
-  quantities: any;
-  plusButtonStyle: any;
-  minusButtonStyle: any;
-  oldPriceStyle: any;
-  newPriceStyle: any;
+  item: CameraItem;
+  quantities: Record<number, number>;
+  plusButtonStyle: CSSProperties;
+  minusButtonStyle: CSSProperties;
+  oldPriceStyle: CSSProperties;
+  newPriceStyle: CSSProperties;
 }) => {
   const dispatch = useDispatch();
-
-  const handleQuantityPlus = (item: any) => {
+  
+  const handleQuantityPlus = (item: CameraItem) => {
     dispatch(increaseQuantity(item?.id));
   };
 
-  const handleQuantityMinus = (item: any) => {
+  const handleQuantityMinus = (item: CameraItem) => {
     dispatch(decreaseQuantity(item?.id));
   };
 

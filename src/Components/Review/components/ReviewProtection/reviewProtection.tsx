@@ -10,13 +10,14 @@ import {
 import { Col } from "antd";
 import Price from "../../../Steps/components/Price/price";
 import { useGetAllProtectionApiQuery } from "../../../../Services/protection";
+import { CameraItem } from "../../../../Interfaces/types";
 
 const ReviewProtection = () => {
   const { data: protectionData } = useGetAllProtectionApiQuery({});
   const quantities = useSelector((state: RootState) => state.camera.quantities);
 
   const reviewItems = protectionData?.items?.filter(
-    (item: any) => (quantities[item.id] ?? 0) > 0,
+    (item: CameraItem) => (quantities[item.id] ?? 0) > 0,
   );
 
   return (
@@ -26,7 +27,7 @@ const ReviewProtection = () => {
           <SectionP>{protectionData?.section}</SectionP>
         </>
       )}
-      {reviewItems?.map((item: any) => {
+      {reviewItems?.map((item: CameraItem) => {
         return (
           <div key={item.id}>
             <ReviewRow style={{ display: "flex", alignItems: "center" }}>

@@ -16,6 +16,7 @@ import { useSelector } from "react-redux";
 import { useGetAllCamerasQuery } from "../../Services/camera";
 import { useGetAllSensorsQuery } from "../../Services/sensors";
 import { useGetAllProtectionApiQuery } from "../../Services/protection";
+import { CameraItem } from "../../Interfaces/types";
 
 const Steps: React.FC = () => {
   const [activeKey, setActiveKey] = useState<string>("1");
@@ -26,8 +27,8 @@ const Steps: React.FC = () => {
   const quantities = useSelector((state: RootState) => state.camera.quantities);
   const planType = useSelector((state: RootState) => state.plan.planType);
 
-  const calculate = (items: any[], quantities: Record<number, number>) => {
-    return items?.filter((item: any) => (quantities[item.id] ?? 0) > 0).length ?? 0;
+  const calculate = (items: CameraItem[], quantities: Record<number, number>) => {
+    return items?.filter((item: CameraItem) => (quantities[item.id] ?? 0) > 0).length ?? 0;
   }
   const cameraSelected = calculate(cameraData?.items, quantities);
   const sensorSelected = calculate(sensorsData?.items, quantities);
@@ -103,7 +104,7 @@ const Steps: React.FC = () => {
         />
       ),
       children: (
-        <Protection activeKey={activeKey} setActiveKey={setActiveKey} />
+        <Protection />
       ),
       style: {
         ...panelStyle,

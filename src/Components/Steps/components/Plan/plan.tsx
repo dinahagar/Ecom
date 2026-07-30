@@ -1,5 +1,4 @@
 import { Radio, RadioChangeEvent } from "antd";
-// import { useState } from "react";
 import Plan500 from "../../../../icons/plan500.png";
 import { CamDiv, CamImg, CamP, PlanDiv, TypeDiv } from "./plan.styles";
 import { useDispatch } from "react-redux";
@@ -14,7 +13,7 @@ const Plan = ({
   setActiveKey,
 }: {
   activeKey: string;
-  setActiveKey: any;
+  setActiveKey: React.Dispatch<React.SetStateAction<string>>;
 }) => {
   const dispatch = useDispatch();
   const { data: planData } = useGetAllPlanApiQuery({});

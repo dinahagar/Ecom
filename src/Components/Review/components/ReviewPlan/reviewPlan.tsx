@@ -14,13 +14,14 @@ import {
 } from "../../../Steps/components/Price/price.styles";
 import { AllPlanType, PlanTypeDiv } from "./reviewPlan.styles";
 import { useGetAllPlanApiQuery } from "../../../../Services/plan";
+import { PlanItem } from "../../../../Interfaces/types";
 
 const ReviewPlan = () => {
   const { data: planData } = useGetAllPlanApiQuery({});
 
   const planType = useSelector((state: RootState) => state.plan.planType);
   const selectedType = planData?.items?.filter(
-    (item: any) => item?.id === planType,
+    (item: PlanItem) => item?.id === Number(planType),
   );
 
   return (

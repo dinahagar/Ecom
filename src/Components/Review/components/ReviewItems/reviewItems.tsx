@@ -4,13 +4,14 @@ import { useGetAllCamerasQuery } from "../../../../Services/camera";
 import { Col } from "antd";
 import Price from "../../../Steps/components/Price/price";
 import { NameP, ReviewImg, ReviewImgDiv, ReviewRow, SectionP } from "./reviewItems.style";
+import { CameraItem } from "../../../../Interfaces/types";
 
 const ReviewItems = () => {
   const { data } = useGetAllCamerasQuery({});
   const quantities = useSelector((state: RootState) => state.camera.quantities);
 
   const reviewItems = data?.items?.filter(
-    (item: any) => (quantities[item.id] ?? 0) > 0,
+    (item: CameraItem) => (quantities[item.id] ?? 0) > 0,
   );
   
   return (
@@ -20,7 +21,7 @@ const ReviewItems = () => {
           <SectionP>{data?.section}</SectionP>
         </>
       )}
-      {reviewItems?.map((item: any) => {
+      {reviewItems?.map((item: CameraItem) => {
         return (
           <div key={item.id}>
             <ReviewRow>

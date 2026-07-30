@@ -2,13 +2,14 @@ import { Row } from "antd";
 import { useGetAllCamerasQuery } from "../../../../Services/camera";
 import { CameraCol, NextBtn, NextBtnDiv } from "./camera.styles";
 import CameraCard from "../CameraCard/cameraCard";
+import { CameraItem } from "../../../../Interfaces/types";
 
 const Camera = ({
   activeKey,
   setActiveKey,
 }: {
   activeKey: string;
-  setActiveKey: any;
+  setActiveKey: React.Dispatch<React.SetStateAction<string>>;
 }) => {
   const { data } = useGetAllCamerasQuery({});
 
@@ -21,7 +22,7 @@ const Camera = ({
   return (
     <div>
       <Row gutter={24} style={{ display: "flex", justifyContent: "center" }} align="stretch">
-        {data?.items?.map((item: any) => {
+        {data?.items?.map((item: CameraItem) => {
           return (
             <CameraCol key={item.id} xs={24} sm={12} md={8} lg={8} xl={12}>
               <CameraCard item={item} key={item.id} />

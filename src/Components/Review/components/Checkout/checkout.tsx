@@ -21,6 +21,7 @@ import { Modal } from "antd";
 import { useDispatch } from "react-redux";
 import { resetColor, resetQuantities } from "../../../../Store/Reducers/cameraSlice";
 import { resetPlan } from "../../../../Store/Reducers/planSlice";
+import { Calculate, PlanItem } from "../../../../Interfaces/types";
 
 const Checkout = () => {
   const dispatch = useDispatch();
@@ -36,15 +37,15 @@ const Checkout = () => {
   );
 
   const selectedType = planData?.items?.filter(
-    (item: any) => item?.id === planType,
+    (item: PlanItem) => item?.id === Number(planType),
   );
 
   const calculatePrices = (
-    items: any[] = [],
+    items: Calculate[] = [],
     quantities: Record<number, number>,
   ) => {
     const selectedItems = items.filter(
-      (item: any) => (quantities[item.id] ?? 0) > 0,
+      (item: Calculate) => (quantities[item.id] ?? 0) > 0,
     );
 
     return selectedItems.reduce(

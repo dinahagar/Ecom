@@ -13,7 +13,7 @@ import Checkout from "./components/Checkout/checkout";
 const Review = () => {
   const quantities = useSelector((state: RootState) => state.camera.quantities);
   const planType = useSelector((state: RootState) => state.plan.planType);
-
+  
   return (
     <ReviewDiv>
       <ReviewP>Review</ReviewP>
@@ -22,10 +22,10 @@ const Review = () => {
       <ReviewSensors />
       <ReviewProtection />
       {planType && <ReviewPlan />}
-      {Object.values(quantities).some((quantity: any) => quantity > 0) && (
+      {Object.values(quantities).some((quantity: number) => quantity > 0) && (
         <Shipping />
       )}
-      {(planType || Object.values(quantities).some((quantity: any) => quantity > 0)) && <Checkout />}
+      {(planType || Object.values(quantities).some((quantity: number) => quantity > 0)) && <Checkout />}
     </ReviewDiv>
   );
 };

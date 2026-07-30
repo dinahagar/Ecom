@@ -17,8 +17,9 @@ import {
 import { RootState } from "../../../../Store/store";
 import { useDispatch } from "react-redux";
 import { selectedColor } from "../../../../Store/Reducers/cameraSlice";
+import { CameraItem, Color } from "../../../../Interfaces/types";
 
-const CameraCard = ({ item }: { item: any }) => {
+const CameraCard = ({ item }: { item: CameraItem }) => {
   const dispatch = useDispatch();
   const quantities = useSelector((state: RootState) => state.camera.quantities);
   const isSelected = (quantities[item.id] ?? 0) > 0;
@@ -26,7 +27,7 @@ const CameraCard = ({ item }: { item: any }) => {
     (state: RootState) => state.camera.selectedColor,
   );
 
-  const handleColor = (item: any, color: any) => {
+  const handleColor = (item: CameraItem, color: Color) => {
     dispatch(selectedColor({ cardId: item.id, colorId: color.id }));
   };
   
@@ -67,7 +68,7 @@ const CameraCard = ({ item }: { item: any }) => {
               <DescSpan>Learn More</DescSpan>
             </DescP>
             <ColorsDiv>
-              {item.colors.map((color: any) => {
+              {item.colors.map((color: Color) => {
                 return (
                   <ColorButton
                     key={color?.id}

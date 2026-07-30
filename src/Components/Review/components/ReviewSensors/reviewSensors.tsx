@@ -10,13 +10,14 @@ import {
 } from "../ReviewItems/reviewItems.style";
 import { Col } from "antd";
 import Price from "../../../Steps/components/Price/price";
+import { CameraItem } from "../../../../Interfaces/types";
 
 const ReviewSensors = () => {
   const { data: sensorsData } = useGetAllSensorsQuery({});
   const quantities = useSelector((state: RootState) => state.camera.quantities);
 
   const reviewItems = sensorsData?.items?.filter(
-    (item: any) => (quantities[item.id] ?? 0) > 0,
+    (item: CameraItem) => (quantities[item.id] ?? 0) > 0,
   );
 
   return (
@@ -26,7 +27,7 @@ const ReviewSensors = () => {
           <SectionP>{sensorsData?.section}</SectionP>
         </>
       )}
-      {reviewItems?.map((item: any) => {
+      {reviewItems?.map((item: CameraItem) => {
         return (
           <div key={item.id}>
             <ReviewRow style={{ display: 'flex', alignItems: 'center'}}>

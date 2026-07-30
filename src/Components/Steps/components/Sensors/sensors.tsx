@@ -1,5 +1,6 @@
 import { Row } from "antd";
 import React from "react";
+import { CameraItem } from "../../../../Interfaces/types";
 import { useGetAllSensorsQuery } from "../../../../Services/sensors";
 import { CameraCol, NextBtn, NextBtnDiv } from "../Camera/camera.styles";
 import CameraCard from "../CameraCard/cameraCard";
@@ -9,7 +10,7 @@ const Sensors = ({
   setActiveKey,
 }: {
   activeKey: string;
-  setActiveKey: any;
+  setActiveKey: React.Dispatch<React.SetStateAction<string>>;
 }) => {
   const { data: sensorsData } = useGetAllSensorsQuery({});
 
@@ -26,7 +27,7 @@ const Sensors = ({
         style={{ display: "flex", justifyContent: "center" }}
         align="stretch"
       >
-        {sensorsData?.items?.map((item: any) => {
+        {sensorsData?.items?.map((item: CameraItem) => {
           return (
             <CameraCol key={item.id} xs={24} sm={12} md={8} lg={8} xl={12}>
               <CameraCard item={item} key={item.id} />
