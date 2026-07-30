@@ -1,10 +1,9 @@
 import { RootState } from "../../../../Store/store";
 import { useSelector } from "react-redux";
 import { useGetAllCamerasQuery } from "../../../../Services/camera";
-import { Col } from "antd";
-import Price from "../../../Steps/components/Price/price";
-import { NameP, ReviewImg, ReviewImgDiv, ReviewRow, SectionP } from "./reviewItems.style";
+import { SectionP } from "./reviewItems.style";
 import { CameraItem } from "../../../../Interfaces/types";
+import SharedReviewItems from "../SharedReviewItems/sharedReviewItems";
 
 const ReviewItems = () => {
   const { data } = useGetAllCamerasQuery({});
@@ -23,40 +22,7 @@ const ReviewItems = () => {
       )}
       {reviewItems?.map((item: CameraItem) => {
         return (
-          <div key={item.id}>
-            <ReviewRow>
-              <Col xs={12} sm={12} md={12} lg={12} xl={12}>
-                <ReviewImgDiv>
-                  <ReviewImg src={item.img} alt="" />
-                  <NameP>{item.title}</NameP>
-                </ReviewImgDiv>
-              </Col>
-              <Col xs={12} sm={12} md={12} lg={12} xl={12}>
-                <Price
-                  item={item}
-                  quantities={quantities}
-                  minusButtonStyle={{
-                    background: "#FFFFFF",
-                    color: "#575757",
-                    border: "none",
-                  }}
-                  plusButtonStyle={{
-                    background: "#FFFFFF",
-                    color: "#575757",
-                    border: "none",
-                  }}
-                  oldPriceStyle={{
-                    fontSize: "14px",
-                    color: "#6F7882",
-                  }}
-                  newPriceStyle={{
-                    fontSize: "14px",
-                    color: "#4E2FD2",
-                  }}
-                />
-              </Col>
-            </ReviewRow>
-          </div>
+          <SharedReviewItems key={item.id} item={item} quantities={quantities}/>
         );
       })}
     </div>
