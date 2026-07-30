@@ -51,7 +51,7 @@ const Steps: React.FC = () => {
           selected={selectedItemsNum ?? 0}
         />
       ),
-      children: <Plan />,
+      children: <Plan activeKey={activeKey} setActiveKey={setActiveKey} />,
       style: {
         ...panelStyle,
         background: activeKey === "2" ? "#EDF4FF" : "#fff",
