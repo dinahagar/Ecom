@@ -1,46 +1,37 @@
-# Getting Started with Create React App
+## Project Name: Ecomexperts
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
+This is a responsive web application designed to make shoppers able to choose their security system.
 
-## Available Scripts
+## Installation
+1. Clone the repository: https://github.com/dinahagar/Ecom
+2. Navigate into the project directory: cd ecom
+3. Install dependencies: npm install
 
-In the project directory, you can run:
+## Running the Project
+npm start
 
-### `npm start`
+## Usage
+After setting up and running the project locally, follow these steps to use the application:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. Open you browser
+    * Navigate to http://localhost:3000.
+2. Home Page
+    * The first page you will see is the Home page.
+    * In first section you will see section of 4 steps to choose:
+        * First step is cameras: you can select any number of cameras and their quantity and color. With "Next: Choose your plan" button to move to step 2.
+        * Second step is Plan: with different design, you can choose from two options [limited, unlimited] plans with different prices. With "Next: Choose your sensor" button to move to step 3.
+        * Third step is sensors: with the same design as cameras, you can select any number and quantites of sensors. With "Next: Choose your protection" button to move to step 4.
+        * Forth step is protection: also with the same design of cameras and sensors, you can select any number and quantites of accessories. As it is the last step there is no Next button.
+    * In second section you will see the review part with:
+        * simple header to declare this part.
+        * the items you choosed from first section (two sections are dynamically connected) with images, title, quantity(with the ability to increase or decrease) and the prices.
+        * then the shipping fees part.
+        * last part is the checkout including:
+            * the total price of old and new prices (dynamically).
+            * the saving amount (dynamically).
+            * "checkout" button clicking on it open a popup to say that you're checked out and also to clear the saved data the user saved before.
+            * "save my system for later" button to save the shoppers' configuration to so their system should be restored exactly as they left it. 
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## API Documentation
+Using Fack local data file in "src/Api" folder.
