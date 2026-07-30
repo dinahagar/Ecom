@@ -29,4 +29,8 @@ export const HeaderP = styled.p`
     font-weight: 400;
     color: #0B0D10;
     margin: 0;
+
+    @media(max-width: 366px) {
+        font-size: 16px;
+    }
 `

@@ -1,6 +1,6 @@
-import { Radio, RadioChangeEvent } from "antd";
+import { RadioChangeEvent } from "antd";
 import Plan500 from "../../../../icons/plan500.png";
-import { CamDiv, CamImg, CamP, PlanDiv, TypeDiv } from "./plan.styles";
+import { CamDiv, CamImg, CamP, PlanDiv, StyledRadioGroup, TypeDiv } from "./plan.styles";
 import { useDispatch } from "react-redux";
 import { selectedPlanType } from "../../../../Store/Reducers/planSlice";
 import { useGetAllPlanApiQuery } from "../../../../Services/plan";
@@ -37,7 +37,7 @@ const Plan = ({
           <CamP>Cam</CamP>
         </CamDiv>
 
-        <Radio.Group
+        <StyledRadioGroup
           onChange={onChange}
           value={planType}
           options={[

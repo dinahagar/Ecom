@@ -8,6 +8,12 @@ export const NameP = styled.p`
     letter-spacing: .5px;
 `
 
+export const CameraReviewItems = styled.div`
+    @media(max-width: 445px) {
+        margin-bottom: 20px;
+    }
+`
+
 export const ReviewRow = styled(Row)`
     display: flex;
     align-items: center;

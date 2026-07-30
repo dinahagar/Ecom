@@ -48,7 +48,7 @@ export const NextBtn = styled.button`
     padding: 5px 24px;
     background: transparent;
     min-height: 39px;
-    min-width: 242px;
+    min-width: 200px;
     cursor: pointer;
 
     &:hover {

@@ -16,6 +16,8 @@ export const CheckoutPrice = styled.div`
     align-items: center;
     gap: 8px;
     margin-top: 8px;
+    flex-wrap: wrap;
+    justify-content: end;
 `
 
 export const CongratsP = styled.p`
