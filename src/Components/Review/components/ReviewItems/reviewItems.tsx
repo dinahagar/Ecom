@@ -12,7 +12,7 @@ const ReviewItems = () => {
   const reviewItems = data?.items?.filter(
     (item: any) => (quantities[item.id] ?? 0) > 0,
   );
-
+  
   return (
     <div>
       {reviewItems?.length > 0 && (

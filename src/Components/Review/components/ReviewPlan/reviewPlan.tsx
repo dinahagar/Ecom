@@ -39,10 +39,10 @@ const ReviewPlan = () => {
         <div>
           <PriceValue>
             <OldPriceP style={{ fontSize: "14px", color: "#6F7882" }}>
-              {selectedType?.[0]?.oldPrice}
+              {selectedType?.[0]?.oldPrice === "0" ? "FREE" : selectedType?.[0]?.oldPrice}
             </OldPriceP>
             <NewPriceP style={{ fontSize: "14px", color: "#4E2FD2" }}>
-              {selectedType?.[0]?.newPrice}
+              {selectedType?.[0]?.newPrice === "0" ? "FREE" : selectedType?.[0]?.newPrice}
             </NewPriceP>
           </PriceValue>
         </div>

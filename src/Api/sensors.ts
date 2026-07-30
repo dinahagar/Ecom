@@ -20,7 +20,7 @@ const sensors = {
       desc: "360° pan and 180° tilt security camera.",
       img: Sensor20,
       oldPrice: "$29.92",
-      newPrice: "FREE",
+      newPrice: "0",
       badge: "",
       colors: [],
     }

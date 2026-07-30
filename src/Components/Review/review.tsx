@@ -8,6 +8,7 @@ import { RootState } from "../../Store/store";
 import ReviewSensors from "./components/ReviewSensors/reviewSensors";
 import ReviewProtection from "./components/ReviewProtection/reviewProtection";
 import ReviewPlan from "./components/ReviewPlan/reviewPlan";
+import Checkout from "./components/Checkout/checkout";
 
 const Review = () => {
   const quantities = useSelector((state: RootState) => state.camera.quantities);
@@ -24,6 +25,7 @@ const Review = () => {
       {Object.values(quantities).some((quantity: any) => quantity > 0) && (
         <Shipping />
       )}
+      {(planType || Object.values(quantities).some((quantity: any) => quantity > 0)) && <Checkout />}
     </ReviewDiv>
   );
 };

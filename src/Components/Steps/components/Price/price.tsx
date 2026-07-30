@@ -73,7 +73,7 @@ const Price = ({
         >
           -
         </QuantityButton>
-        <QuantitySpan>{quantities[item?.id] ?? 0 ?? 0}</QuantitySpan>
+        <QuantitySpan>{quantities[item?.id] ?? 0 }</QuantitySpan>
         <QuantityButton
           style={{
             ...plusButtonStyle,
@@ -84,8 +84,8 @@ const Price = ({
         </QuantityButton>
       </QuantityDiv>
       <PriceValue>
-        <OldPriceP style={{ ...oldPriceStyle }}>{item?.oldPrice}</OldPriceP>
-        <NewPriceP style={{ ...newPriceStyle }}>{item?.newPrice}</NewPriceP>
+        <OldPriceP style={{ ...oldPriceStyle }}>{item?.oldPrice === "0" ? "FREE" : item?.oldPrice}</OldPriceP>
+        <NewPriceP style={{ ...newPriceStyle }}>{item?.newPrice === "0" ? "FREE" : item?.newPrice}</NewPriceP>
       </PriceValue>
     </PriceDiv>
   );
