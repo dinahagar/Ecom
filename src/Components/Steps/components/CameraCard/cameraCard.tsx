@@ -1,5 +1,4 @@
 import { Row } from "antd";
-import { useState } from "react";
 import Price from "../Price/price";
 import { useSelector } from "react-redux";
 import {
@@ -21,8 +20,8 @@ import { selectedColor } from "../../../../Store/Reducers/cameraSlice";
 
 const CameraCard = ({ item }: { item: any }) => {
   const dispatch = useDispatch();
-  const [selectedCard, setSelectedCard] = useState<boolean>(false);
   const quantities = useSelector((state: RootState) => state.camera.quantities);
+  const isSelected = (quantities[item.id] ?? 0) > 0;
   const selectedColorValue = useSelector(
     (state: RootState) => state.camera.selectedColor,
   );
@@ -30,11 +29,11 @@ const CameraCard = ({ item }: { item: any }) => {
   const handleColor = (item: any, color: any) => {
     dispatch(selectedColor({ cardId: item.id, colorId: color.id }));
   };
-
+  
   return (
     <div>
       <Cameracard
-        style={{ border: selectedCard ? "solid 2px #4E2FD2B2" : "none" }}
+        style={{ border: isSelected ? "solid 2px #4E2FD2B2" : "none" }}
       >
         <Row align="stretch">
           <ImgCol xs={24} sm={24} md={24} lg={24} xl={8}>
@@ -90,7 +89,6 @@ const CameraCard = ({ item }: { item: any }) => {
             </ColorsDiv>
             <Price
               item={item}
-              setSelectedCard={setSelectedCard}
               quantities={quantities}
               minusButtonStyle={{
                 background:

@@ -1,11 +1,13 @@
 import { Radio, RadioChangeEvent } from "antd";
-import { useState } from "react";
+// import { useState } from "react";
 import Plan500 from "../../../../icons/plan500.png";
 import { CamDiv, CamImg, CamP, PlanDiv, TypeDiv } from "./plan.styles";
 import { useDispatch } from "react-redux";
 import { selectedPlanType } from "../../../../Store/Reducers/planSlice";
 import { useGetAllPlanApiQuery } from "../../../../Services/plan";
 import { NextBtn, NextBtnDiv } from "../Camera/camera.styles";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../../Store/store";
 
 const Plan = ({
   activeKey,
@@ -14,12 +16,11 @@ const Plan = ({
   activeKey: string;
   setActiveKey: any;
 }) => {
-  const [value, setValue] = useState<string>("");
   const dispatch = useDispatch();
   const { data: planData } = useGetAllPlanApiQuery({});
+  const planType = useSelector((state: RootState) => state.plan.planType);
 
   const onChange = (e: RadioChangeEvent) => {
-    setValue(e.target.value);
     dispatch(selectedPlanType(e.target.value));
   };
 
@@ -39,7 +40,7 @@ const Plan = ({
 
         <Radio.Group
           onChange={onChange}
-          value={value}
+          value={planType}
           options={[
             {
               value: 50,

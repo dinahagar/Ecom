@@ -16,7 +16,6 @@ import { useDispatch } from "react-redux";
 
 const Price = ({
   item,
-  setSelectedCard,
   plusButtonStyle,
   minusButtonStyle,
   oldPriceStyle,
@@ -29,27 +28,15 @@ const Price = ({
   minusButtonStyle: any;
   oldPriceStyle: any;
   newPriceStyle: any;
-  setSelectedCard?: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const dispatch = useDispatch();
 
   const handleQuantityPlus = (item: any) => {
-    const quantity = quantities[item?.id] ?? 0;
-    const next = quantity + 1;
     dispatch(increaseQuantity(item?.id));
-
-    if (next >= 1) {
-      setSelectedCard?.(true);
-    }
   };
 
   const handleQuantityMinus = (item: any) => {
-    const quantity = quantities[item?.id] ?? 0;
     dispatch(decreaseQuantity(item?.id));
-
-    if (quantity - 1 === 0) {
-      setSelectedCard?.(false);
-    }
   };
 
   return (

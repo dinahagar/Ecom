@@ -23,17 +23,36 @@ export const cameraSlice = createSlice({
       const id = action.payload;
       state.quantities[id] = Math.max((state.quantities[id] ?? 0) - 1, 0);
     },
-    selectedColor(state, action: PayloadAction<{ cardId: number; colorId: number }>) {
+    selectedColor(
+      state,
+      action: PayloadAction<{ cardId: number; colorId: number }>,
+    ) {
       const { cardId, colorId } = action.payload;
       state.selectedColor[cardId] = colorId;
+    },
+    loadQuantities(state, action: PayloadAction<Record<number, number>>) {
+      state.quantities = action.payload;
+    },
+    loadSelectedColors(state, action: PayloadAction<Record<number, number>>) {
+      state.selectedColor = action.payload;
+    },
+    resetQuantities(state) {
+      state.quantities = {};
+    },
+    resetColor(state) {
+      state.selectedColor = {};
     },
   },
 });
 
 export const {
+  loadQuantities,
+  loadSelectedColors,
   increaseQuantity,
   decreaseQuantity,
-  selectedColor
+  selectedColor,
+  resetQuantities,
+  resetColor
 } = cameraSlice.actions;
 
 export default cameraSlice.reducer;

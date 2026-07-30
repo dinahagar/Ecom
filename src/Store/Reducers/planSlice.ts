@@ -14,11 +14,17 @@ export const planSlice = createSlice({
   initialState,
   reducers: {
     selectedPlanType(state, action: PayloadAction<string>) {
-        state.planType = action.payload;
+      state.planType = action.payload;
+    },
+    loadPlanType(state, action: PayloadAction<string>) {
+      state.planType = action.payload;
+    },
+    resetPlan(state) {
+      state.planType = "";
     },
   },
 });
 
-export const { selectedPlanType } = planSlice.actions;
+export const { selectedPlanType, loadPlanType, resetPlan } = planSlice.actions;
 
 export default planSlice.reducer;
