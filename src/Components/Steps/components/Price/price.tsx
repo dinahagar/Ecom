@@ -1,9 +1,7 @@
 import React from "react";
 import {
   decreaseQuantity,
-  decreaseSelectedItems,
   increaseQuantity,
-  increaseSelectedItems,
 } from "../../../../Store/Reducers/cameraSlice";
 import {
   NewPriceP,
@@ -40,10 +38,6 @@ const Price = ({
     const next = quantity + 1;
     dispatch(increaseQuantity(item?.id));
 
-    if (quantity === 0) {
-      dispatch(increaseSelectedItems());
-    }
-
     if (next >= 1) {
       setSelectedCard?.(true);
     }
@@ -52,10 +46,6 @@ const Price = ({
   const handleQuantityMinus = (item: any) => {
     const quantity = quantities[item?.id] ?? 0;
     dispatch(decreaseQuantity(item?.id));
-
-    if (quantity === 1) {
-      dispatch(decreaseSelectedItems());
-    }
 
     if (quantity - 1 === 0) {
       setSelectedCard?.(false);

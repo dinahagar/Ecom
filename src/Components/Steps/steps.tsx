@@ -12,12 +12,27 @@ import sensorsIcon from "../../icons/sensors.png";
 import protectionIcon from "../../icons/protection.png";
 import Header from "./components/Header/header";
 import { RootState } from "../../Store/store";
-import { useSelector } from 'react-redux'
+import { useSelector } from "react-redux";
+import { useGetAllCamerasQuery } from "../../Services/camera";
+import { useGetAllSensorsQuery } from "../../Services/sensors";
+import { useGetAllProtectionApiQuery } from "../../Services/protection";
 
 const Steps: React.FC = () => {
   const [activeKey, setActiveKey] = useState<string>("1");
   const { token } = theme.useToken();
-  const selectedItemsNum = useSelector((state: RootState) => state.camera.selectedItems);
+  const { data: cameraData } = useGetAllCamerasQuery({});
+  const { data: sensorsData } = useGetAllSensorsQuery({});
+  const { data: protectionData } = useGetAllProtectionApiQuery({});
+  const quantities = useSelector((state: RootState) => state.camera.quantities);
+  const planType = useSelector((state: RootState) => state.plan.planType);
+
+  const calculate = (items: any[], quantities: Record<number, number>) => {
+    return items?.filter((item: any) => (quantities[item.id] ?? 0) > 0).length ?? 0;
+  }
+  const cameraSelected = calculate(cameraData?.items, quantities);
+  const sensorSelected = calculate(sensorsData?.items, quantities);
+  const protectionSelected = calculate(protectionData?.items, quantities);
+  const planSelected = planType ? 1 : 0;
 
   const getItems: (panelStyle: CSSProperties) => CollapseProps["items"] = (
     panelStyle,
@@ -30,7 +45,7 @@ const Steps: React.FC = () => {
           icon={cameraIcon}
           title="Choose your cameras"
           isActive={activeKey === "1"}
-          selected={selectedItemsNum ?? 0}
+          selected={cameraSelected}
         />
       ),
       children: <Camera activeKey={activeKey} setActiveKey={setActiveKey} />,
@@ -48,7 +63,7 @@ const Steps: React.FC = () => {
           icon={planIcon}
           title="Choose your plan"
           isActive={activeKey === "2"}
-          selected={selectedItemsNum ?? 0}
+          selected={planSelected}
         />
       ),
       children: <Plan activeKey={activeKey} setActiveKey={setActiveKey} />,
@@ -66,7 +81,7 @@ const Steps: React.FC = () => {
           icon={sensorsIcon}
           title="Choose your sensors"
           isActive={activeKey === "3"}
-          selected={selectedItemsNum ?? 0}
+          selected={sensorSelected}
         />
       ),
       children: <Sensors activeKey={activeKey} setActiveKey={setActiveKey} />,
@@ -84,10 +99,12 @@ const Steps: React.FC = () => {
           icon={protectionIcon}
           title="Add extra protection"
           isActive={activeKey === "4"}
-          selected={selectedItemsNum ?? 0}
+          selected={protectionSelected}
         />
       ),
-      children: <Protection activeKey={activeKey} setActiveKey={setActiveKey} />,
+      children: (
+        <Protection activeKey={activeKey} setActiveKey={setActiveKey} />
+      ),
       style: {
         ...panelStyle,
         background: activeKey === "4" ? "#EDF4FF" : "#fff",
